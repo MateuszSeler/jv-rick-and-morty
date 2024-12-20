@@ -1,6 +1,6 @@
 package mate.academy.rickandmorty.dto.external;
 
-public record LocationDataDto(String name, String url) {
+public record LocationInputDataDto (String name, String url) {
 }
 
 /*

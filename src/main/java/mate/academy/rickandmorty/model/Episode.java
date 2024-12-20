@@ -10,11 +10,12 @@ import lombok.Data;
 @Data
 @Entity
 public class Episode {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private Long externalId;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String url;
 }
