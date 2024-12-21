@@ -1,6 +1,5 @@
 package mate.academy.rickandmorty.mapper;
 
-
 import mate.academy.rickandmorty.config.MapperConfig;
 import mate.academy.rickandmorty.dto.external.LocationInputDataDto;
 import mate.academy.rickandmorty.dto.internal.LocationCreateRequestDto;
@@ -14,6 +13,6 @@ public interface LocationMapper {
 
     Location toModel(LocationCreateRequestDto locationCreateRequestDto);
 
-    LocationCreateRequestDto fromExternalDataInputToCreationRequest(LocationInputDataDto locationInputDataDto);
-
+    LocationCreateRequestDto fromExternalDataInputToCreationRequest(
+            LocationInputDataDto locationInputDataDto);
 }

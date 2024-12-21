@@ -1,8 +1,8 @@
 package mate.academy.rickandmorty.dto.internal;
 
-import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.Data;
 import mate.academy.rickandmorty.dto.external.LocationInputDataDto;
 
 @Data

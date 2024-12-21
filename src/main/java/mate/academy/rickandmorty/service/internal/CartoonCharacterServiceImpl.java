@@ -16,7 +16,8 @@ public class CartoonCharacterServiceImpl implements CartoonCharacterService {
     private final LocationService locationService;
 
     @Override
-    public CartoonCharacter save(CartoonCharacterCreateRequestDto cartoonCharacterCreateRequestDto) {
+    public CartoonCharacter save(
+            CartoonCharacterCreateRequestDto cartoonCharacterCreateRequestDto) {
 
         if (cartoonCharacterRepository.findByExternalId(
                 cartoonCharacterCreateRequestDto.getExternalId()).isPresent()) {
@@ -30,8 +31,16 @@ public class CartoonCharacterServiceImpl implements CartoonCharacterService {
                 episodeService.save(cartoonCharacterCreateRequestDto.getEpisodes()));
         cartoonCharacter.setOrigin(
                 locationService.save(cartoonCharacterCreateRequestDto.getOrigin()));
-        cartoonCharacter.setLocation(locationService.save(cartoonCharacterCreateRequestDto.getLocation()));
+        cartoonCharacter.setLocation(
+                locationService.save(cartoonCharacterCreateRequestDto.getLocation()));
 
+        if (cartoonCharacterRepository.findByName(
+                cartoonCharacter.getName()).isPresent()) {
+            cartoonCharacter.setId(
+                    cartoonCharacterRepository
+                            .findByName(cartoonCharacter.getName()).get().getId()
+            );
+        }
         return cartoonCharacterRepository.save(cartoonCharacter);
     }
 }

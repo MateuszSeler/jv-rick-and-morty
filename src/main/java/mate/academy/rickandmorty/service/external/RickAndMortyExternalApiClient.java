@@ -1,8 +1,9 @@
 package mate.academy.rickandmorty.service.external;
 
-import mate.academy.rickandmorty.dto.external.CartoonCharacterInputDataDto;
-import mate.academy.rickandmorty.dto.internal.CartoonCharacterDto;
+import mate.academy.rickandmorty.model.CartoonCharacter;
 
 public interface RickAndMortyExternalApiClient {
-    CartoonCharacterDto getCharacterById(Long characterId);
+    CartoonCharacter getRandomCharacter();
+
+    CartoonCharacter getCharacterById(Long characterId);
 }

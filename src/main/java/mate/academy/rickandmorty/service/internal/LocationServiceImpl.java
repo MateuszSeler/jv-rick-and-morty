@@ -2,7 +2,6 @@ package mate.academy.rickandmorty.service.internal;
 
 import lombok.RequiredArgsConstructor;
 import mate.academy.rickandmorty.dto.internal.LocationCreateRequestDto;
-import mate.academy.rickandmorty.dto.internal.LocationUpdateRequestDto;
 import mate.academy.rickandmorty.mapper.LocationMapper;
 import mate.academy.rickandmorty.model.Location;
 import mate.academy.rickandmorty.repository.LocationRepository;
@@ -16,8 +15,13 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Location save(LocationCreateRequestDto locationCreateRequestDto) {
+        Location location = locationMapper.toModel(locationCreateRequestDto);
 
-        locationMapper.toModel(locationCreateRequestDto);
-        return locationRepository.save(locationMapper.toModel(locationCreateRequestDto));
+        if (locationRepository.findByName(locationCreateRequestDto.getName()).isPresent()) {
+            location.setId(locationRepository.findByName(
+                    locationCreateRequestDto.getName()).get().getId());
+        }
+
+        return locationRepository.save(location);
     }
 }

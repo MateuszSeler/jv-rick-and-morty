@@ -1,7 +1,7 @@
 package mate.academy.rickandmorty.controller;
 
 import lombok.RequiredArgsConstructor;
-
+import mate.academy.rickandmorty.model.CartoonCharacter;
 import mate.academy.rickandmorty.service.external.RickAndMortyExternalApiClientImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +15,12 @@ public class CartoonCharacterController {
     private final RickAndMortyExternalApiClientImpl externalApiClientImpl;
 
     @GetMapping("/{id}")
-    public Object getCharacterById(@PathVariable Long id) {
+    public CartoonCharacter getCharacterById(@PathVariable Long id) {
         return externalApiClientImpl.getCharacterById(id);
+    }
+
+    @GetMapping("/random")
+    public CartoonCharacter getRandomCharacter() {
+        return externalApiClientImpl.getRandomCharacter();
     }
 }

@@ -10,7 +10,6 @@ import lombok.Data;
 @Data
 @Entity
 public class Episode {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
