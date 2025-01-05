@@ -12,10 +12,13 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "characters")
 public class CartoonCharacter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +38,8 @@ public class CartoonCharacter {
     @JoinColumn(name = "location_id")
     private Location location;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "charackter_episodes",
-            joinColumns = @JoinColumn(name = "charachter_id"),
+    @JoinTable(name = "character_episodes",
+            joinColumns = @JoinColumn(name = "character_id"),
             inverseJoinColumns = @JoinColumn(name = "episodes_id"))
     private List<Episode> episodes;
     private String url;

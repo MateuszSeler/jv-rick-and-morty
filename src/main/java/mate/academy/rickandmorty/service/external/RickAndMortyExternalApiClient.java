@@ -1,9 +1,12 @@
 package mate.academy.rickandmorty.service.external;
 
-import mate.academy.rickandmorty.model.CartoonCharacter;
+import mate.academy.rickandmorty.dto.internal.CartoonCharacterCreateRequestDto;
+import mate.academy.rickandmorty.dto.internal.CartoonCharacterDto;
+
+import java.util.List;
 
 public interface RickAndMortyExternalApiClient {
-    CartoonCharacter getRandomCharacter();
+    CartoonCharacterCreateRequestDto uploadCartoonCharacterById(Long characterId);
 
-    CartoonCharacter getCharacterById(Long characterId);
+    void uploadDataBase();
 }

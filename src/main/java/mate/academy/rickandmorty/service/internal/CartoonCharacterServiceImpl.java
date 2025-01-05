@@ -2,14 +2,20 @@ package mate.academy.rickandmorty.service.internal;
 
 import lombok.RequiredArgsConstructor;
 import mate.academy.rickandmorty.dto.internal.CartoonCharacterCreateRequestDto;
+import mate.academy.rickandmorty.dto.internal.CartoonCharacterDto;
 import mate.academy.rickandmorty.mapper.CartoonCharacterMapper;
 import mate.academy.rickandmorty.model.CartoonCharacter;
 import mate.academy.rickandmorty.repository.CartoonCharacterRepository;
+import mate.academy.rickandmorty.service.external.RickAndMortyExternalApiClient;
 import org.springframework.stereotype.Service;
+
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
 public class CartoonCharacterServiceImpl implements CartoonCharacterService {
+    private static final int NUMBER_OF_CHARACTERS = 826;
+    private final Random random = new Random();
     private final CartoonCharacterRepository cartoonCharacterRepository;
     private final CartoonCharacterMapper cartoonCharacterMapper;
     private final EpisodeService episodeService;
@@ -21,8 +27,9 @@ public class CartoonCharacterServiceImpl implements CartoonCharacterService {
 
         if (cartoonCharacterRepository.findByExternalId(
                 cartoonCharacterCreateRequestDto.getExternalId()).isPresent()) {
-            return cartoonCharacterRepository.findByExternalId(
-                    cartoonCharacterCreateRequestDto.getExternalId()).get();
+            return
+                    cartoonCharacterRepository.findByExternalId(
+                            cartoonCharacterCreateRequestDto.getExternalId()).get();
         }
 
         CartoonCharacter cartoonCharacter
@@ -42,5 +49,18 @@ public class CartoonCharacterServiceImpl implements CartoonCharacterService {
             );
         }
         return cartoonCharacterRepository.save(cartoonCharacter);
+    }
+
+    @Override
+    public CartoonCharacterDto getCartoonCharacter(Long id) {
+        return cartoonCharacterMapper.toDto(
+                cartoonCharacterRepository.findById(id)
+                        .orElseThrow(
+                                () -> new RuntimeException("Character with id: " + id + " not found")));
+    }
+
+    @Override
+    public CartoonCharacterDto getRandomCartoonCharacter() {
+        return getCartoonCharacter(random.nextLong(NUMBER_OF_CHARACTERS));
     }
 }
