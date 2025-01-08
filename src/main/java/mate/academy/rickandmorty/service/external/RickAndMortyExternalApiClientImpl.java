@@ -56,7 +56,6 @@ public class RickAndMortyExternalApiClientImpl implements RickAndMortyExternalAp
         for (long i = 1; i <= NUMBER_OF_CHARACTERS; i++) {
             cartoonCharacterService.save(uploadCartoonCharacterById(i));
         }
-
         ifDataWasUploaded = true;
     }
 }

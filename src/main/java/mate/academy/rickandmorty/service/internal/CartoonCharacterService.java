@@ -1,10 +1,9 @@
 package mate.academy.rickandmorty.service.internal;
 
+import java.util.List;
 import mate.academy.rickandmorty.dto.internal.CartoonCharacterCreateRequestDto;
 import mate.academy.rickandmorty.dto.internal.CartoonCharacterDto;
 import mate.academy.rickandmorty.model.CartoonCharacter;
-
-import java.util.Optional;
 
 public interface CartoonCharacterService {
     CartoonCharacter save(CartoonCharacterCreateRequestDto cartoonCharacterCreateRequestDto);
@@ -12,4 +11,6 @@ public interface CartoonCharacterService {
     CartoonCharacterDto getCartoonCharacter(Long id);
 
     CartoonCharacterDto getRandomCartoonCharacter();
+
+    List<CartoonCharacterDto> findNamesWhichContainString(String string);
 }

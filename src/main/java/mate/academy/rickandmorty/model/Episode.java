@@ -13,7 +13,7 @@ import lombok.Data;
 @Table(name = "episodes")
 public class Episode {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private Long externalId;
